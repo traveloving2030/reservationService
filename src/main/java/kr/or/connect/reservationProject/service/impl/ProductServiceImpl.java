@@ -27,9 +27,9 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
-	public List<Product> getProductByCategoryId(Integer start) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Product> getProductByCategoryId(Integer category_id, Integer start) {
+		List<Product> list = productDao.selectProductByCategoryId(category_id, start, ProductService.LIMIT);
+		return list;
 	}
 
 	@Override
