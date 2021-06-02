@@ -7,11 +7,14 @@ public class Product {
 	private int category_id;
 	private String description;
 	private String content;
+	private String place_name;
+	private String save_file_name;
+	private String type;
+	
 	private String event;
 	private Date create_date;
 	private Date modify_date;
 	
-
 	public int getId() {
 		return id;
 	}
@@ -36,6 +39,24 @@ public class Product {
 	public void setContent(String content) {
 		this.content = content;
 	}
+	public String getPlace_name() {
+		return place_name;
+	}
+	public void setPlace_name(String place_name) {
+		this.place_name = place_name;
+	}
+	public String getSave_file_name() {
+		return save_file_name;
+	}
+	public void setSave_file_name(String save_file_name) {
+		this.save_file_name = save_file_name;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
 	public String getEvent() {
 		return event;
 	}
@@ -55,10 +76,16 @@ public class Product {
 		this.modify_date = modify_date;
 	}
 	
+	
 	@Override
 	public String toString() {
-		return "product [id=" + id + ", category_id=" + category_id + ", description=" + description + ", content="
-				+ content + ", event=" + event + ", create_date=" + create_date + ", modify_date=" + modify_date + "]";
+		return "Product [id=" + id + ", category_id=" + category_id + ", description=" + description + ", content="
+				+ content + ", place_name=" + place_name + ", save_file_name=" + save_file_name + ", type=" + type
+				+ ", event=" + event + ", create_date=" + create_date + ", modify_date=" + modify_date + "]";
 	}
 	
+	
+	
+	
+
 }

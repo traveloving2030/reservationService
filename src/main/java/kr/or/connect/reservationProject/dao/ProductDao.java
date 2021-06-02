@@ -26,9 +26,6 @@ public class ProductDao {
 	 
 	 public ProductDao(DataSource dataSource) {
 	        this.jdbc = new NamedParameterJdbcTemplate(dataSource);
-	        this.insertAction = new SimpleJdbcInsert(dataSource)
-	                .withTableName("product")
-	                .usingGeneratedKeyColumns("id");
 	 }
 	 
 	public List<Product> selectAll(Integer start, Integer limit) {
@@ -46,9 +43,9 @@ public class ProductDao {
         return jdbc.query(SELECT_PRODUCT_PAGING, params, rowMapper);
     }
 	 
-	public Long insertProduct(Product product) {
+	public int insertProduct(Product product) {
 			SqlParameterSource params = new BeanPropertySqlParameterSource(product);
-			return insertAction.executeAndReturnKey(params).longValue();
+			return insertAction.execute(params);
 	}
 	 
 	 

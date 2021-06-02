@@ -32,9 +32,5 @@ public class ProductServiceImpl implements ProductService{
 		return list;
 	}
 
-	@Override
-	public int getProductCount() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+
 }
