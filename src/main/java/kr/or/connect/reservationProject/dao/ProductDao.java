@@ -47,7 +47,14 @@ public class ProductDao {
 			SqlParameterSource params = new BeanPropertySqlParameterSource(product);
 			return insertAction.execute(params);
 	}
-	 
+	
+	public int selectAllProdCount() {
+		return jdbc.queryForObject(SELECT_PRODUCT_COUNT, Collections.emptyMap(), Integer.class);
+	}
+
+	public int selectProdCountByCategory(Integer category_id) {
+		return jdbc.queryForObject(SELECT_PRODUCT_COUNT_BYCATEGORY, Collections.emptyMap(), Integer.class);
+	}
 	 
 	 
 	 

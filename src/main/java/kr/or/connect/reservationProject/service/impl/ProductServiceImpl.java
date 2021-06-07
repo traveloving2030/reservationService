@@ -13,8 +13,7 @@ import kr.or.connect.reservationProject.service.ProductService;
 
 @Service
 public class ProductServiceImpl implements ProductService{
-	@Autowired
-	CategoryDao categoryDao;
+
 	
 	@Autowired
 	ProductDao productDao;
@@ -31,6 +30,17 @@ public class ProductServiceImpl implements ProductService{
 		List<Product> list = productDao.selectProductByCategoryId(category_id, start, ProductService.LIMIT);
 		return list;
 	}
+
+	@Override
+	public int getAllProductCount() {
+		return productDao.selectAllProdCount();
+	}
+
+	@Override
+	public int getProductCountByCategory(Integer category_id) {
+		return productDao.selectProdCountByCategory(category_id);
+	}
+
 
 
 }
