@@ -9,5 +9,6 @@ public interface ProductService {
 	public List<Product> getAllProducts(Integer start);
 	public List<Product> getProductByCategoryId(Integer category_id, Integer start);
 	public int getAllProductCount();
-	public int getProductCountByCategory(Integer category);
+	public int getProductCountByCategory(Integer category_id);
+	public List<Product> getPromotionImage();
 }

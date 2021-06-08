@@ -19,7 +19,9 @@ public class ProductController {
 	ProductService productService;
 	
 	@GetMapping(path="/")
-	public String main(@RequestParam(name="start", required=false, defaultValue="0") int start, @RequestParam(name="category_id", required = false) int category_id, ModelMap model) {
+	public String main(@RequestParam(name="start", required=false, defaultValue="0") int start, ModelMap model) {
+		
+		
 		List<Product> allProductList = productService.getAllProducts(start);
 		
 		int productAllCount = productService.getAllProductCount();

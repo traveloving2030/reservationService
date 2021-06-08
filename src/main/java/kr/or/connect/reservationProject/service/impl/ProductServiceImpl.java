@@ -41,6 +41,12 @@ public class ProductServiceImpl implements ProductService{
 		return productDao.selectProdCountByCategory(category_id);
 	}
 
+	@Override
+	public List<Product> getPromotionImage() {
+		List<Product> list = productDao.selectPromotion();
+		return list;
+	}
+
 
 
 }

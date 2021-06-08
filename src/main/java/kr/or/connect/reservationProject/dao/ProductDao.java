@@ -55,9 +55,9 @@ public class ProductDao {
 	public int selectProdCountByCategory(Integer category_id) {
 		return jdbc.queryForObject(SELECT_PRODUCT_COUNT_BYCATEGORY, Collections.emptyMap(), Integer.class);
 	}
-	 
-	 
-	 
-	 
+	
+	public List<Product> selectPromotion(){
+		return jdbc.query(PROMOTION_FILEINFO, rowMapper);
+	}
 	 
 }
