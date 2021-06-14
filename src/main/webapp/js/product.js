@@ -52,13 +52,16 @@ function makeTemplate(productList) {
     }
 }
 
+var clickCount = 0;
+
 function moreProducts(){
+    clickCount ++;
     $.ajax({
         dataType: "json",
-        url: "http://localhost:8080/reservationProject/api/products",
+        url: "http://localhost:8080/reservationProject/api/products?start="+ clickCount*4,
         type: "GET",
         success: function(data){
-            console.log(data);
+            makeTemplate(data.productAllList)
         }
     })
 

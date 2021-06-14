@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import kr.or.connect.reservationProject.dao.CategoryDao;
+
 import kr.or.connect.reservationProject.dao.ProductDao;
 import kr.or.connect.reservationProject.dto.Product;
 import kr.or.connect.reservationProject.service.ProductService;

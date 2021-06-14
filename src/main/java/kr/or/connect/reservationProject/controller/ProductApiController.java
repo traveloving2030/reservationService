@@ -61,11 +61,11 @@ public class ProductApiController {
 	}
 	
 	@GetMapping("/products/{category}")
-	public Map<String, Object> productListByCategory(@RequestParam(name="start", required = false, defaultValue = "0") int start,  @RequestParam(name="category_id", required = false) int category_id){
+	public Map<String, Object> productListByCategory(@RequestParam(name="start", required = false, defaultValue = "0") int start,  @PathVariable(name="category") int category){
 		
-		List<Product> productListByCategoryId = productService.getProductByCategoryId(category_id, start);
+		List<Product> productListByCategoryId = productService.getProductByCategoryId(category, start);
 		
-		int productCountByCategoryId = productService.getProductCountByCategory(category_id);
+		int productCountByCategoryId = productService.getProductCountByCategory(category);
 		int pageCount = productCountByCategoryId / productService.LIMIT;
 		if(productCountByCategoryId % productService.LIMIT > 0) {
 			pageCount ++;

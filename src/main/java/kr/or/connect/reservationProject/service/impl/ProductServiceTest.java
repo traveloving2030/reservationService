@@ -15,10 +15,10 @@ public class ProductServiceTest {
 		ProductService ProductService = ac.getBean(ProductService.class);
 		
 
-//		List<Product> result = ProductService.getProductByCategoryId(2, 1);
-//		System.out.println(result);
-		List<Product> result = ProductService.getPromotionImage();
+		List<Product> result = ProductService.getProductByCategoryId(3, 1);
 		System.out.println(result);
+//		List<Product> result = ProductService.getPromotionImage();
+//		System.out.println(result);
 		
 	}
 }

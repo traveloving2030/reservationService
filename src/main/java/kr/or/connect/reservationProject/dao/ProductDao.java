@@ -53,7 +53,9 @@ public class ProductDao {
 	}
 
 	public int selectProdCountByCategory(Integer category_id) {
-		return jdbc.queryForObject(SELECT_PRODUCT_COUNT_BYCATEGORY, Collections.emptyMap(), Integer.class);
+		Map<String, Integer> params = new HashMap<>();
+    	params.put("category_id", category_id);
+		return jdbc.queryForObject(SELECT_PRODUCT_COUNT_BYCATEGORY, params, Integer.class);
 	}
 	
 	public List<Product> selectPromotion(){
