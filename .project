@@ -34,4 +34,31 @@
 		<nature>org.eclipse.wst.common.project.facet.core.nature</nature>
 		<nature>org.eclipse.wst.jsdt.core.jsNature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>src/main/webapp/css/bookinglogin.css</name>
+			<type>1</type>
+			<location>C:/Users/user/Documents/GitHub/boostCourse/Project3/resevation-html-base/css/bookinglogin.css</location>
+		</link>
+		<link>
+			<name>src/main/webapp/font/NanumGothicBold.woff</name>
+			<type>1</type>
+			<location>C:/Users/user/Documents/GitHub/boostCourse/Project3/resevation-html-base/font/NanumGothicBold.woff</location>
+		</link>
+		<link>
+			<name>src/main/webapp/font/NanumGothicRegular.woff</name>
+			<type>1</type>
+			<location>C:/Users/user/Documents/GitHub/boostCourse/Project3/resevation-html-base/font/NanumGothicRegular.woff</location>
+		</link>
+		<link>
+			<name>src/main/webapp/font/Naver-Icons.woff</name>
+			<type>1</type>
+			<location>C:/Users/user/Documents/GitHub/boostCourse/Project3/resevation-html-base/font/Naver-Icons.woff</location>
+		</link>
+		<link>
+			<name>src/main/webapp/font/Naver-booking-Icons.woff</name>
+			<type>1</type>
+			<location>C:/Users/user/Documents/GitHub/boostCourse/Project3/resevation-html-base/font/Naver-booking-Icons.woff</location>
+		</link>
+	</linkedResources>
 </projectDescription>

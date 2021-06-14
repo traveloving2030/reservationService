@@ -26,6 +26,7 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
+	@Transactional
 	public List<Product> getProductByCategoryId(Integer category_id, Integer start) {
 		List<Product> list = productDao.selectProductByCategoryId(category_id, start, ProductService.LIMIT);
 		return list;
@@ -42,6 +43,7 @@ public class ProductServiceImpl implements ProductService{
 	}
 
 	@Override
+	@Transactional
 	public List<Product> getPromotionImage() {
 		List<Product> list = productDao.selectPromotion();
 		return list;

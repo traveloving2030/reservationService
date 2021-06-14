@@ -11,7 +11,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = {"kr.or.connnect.reservationProject.controller"})
+@ComponentScan(basePackages = {"kr.or.connect.reservationProject.controller"})
 public class WebMvcContextConfiguration extends WebMvcConfigurerAdapter{
 	
 	@Override

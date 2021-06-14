@@ -15,7 +15,9 @@ public class ProductServiceTest {
 		ProductService ProductService = ac.getBean(ProductService.class);
 		
 
-		List<Product> result = ProductService.getProductByCategoryId(2, 1);
+//		List<Product> result = ProductService.getProductByCategoryId(2, 1);
+//		System.out.println(result);
+		List<Product> result = ProductService.getPromotionImage();
 		System.out.println(result);
 		
 	}
