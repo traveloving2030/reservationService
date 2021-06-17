@@ -67,6 +67,26 @@ function moreProducts(){
 
 }
 
+function show(id){
+    var a = document.getElementById(id);
+    var aParentElement = a.parentElement;
+    console.log(aParentElement);
+/*     var ul1 = document.getElementById("firstItem");
+    var ul2 = document.getElementById("secondItem");
+    ul1.innerHTML="";
+    ul2.innerHTML="";
+    $.ajax({
+        dataType: "json",
+        url: "http://localhost:8080/reservationProject/api/products?start="+ clickCount*4,
+        type: "GET",
+        success: function(data){
+            makeTemplate(data.productAllList)
+        }
+    })
+
+    console.log(id); */
+}
+
 
 
 

@@ -68,19 +68,19 @@
                                 <a class="anchor active"> <span>전체리스트</span> </a>
                             </li>
                             <li class="item" data-category="1">
-                                <a class="anchor"> <span>전시</span> </a>
+                                <a class="anchor" id="exhibit" onclick="show(this.id)"> <span>전시</span> </a>
                             </li>
                             <li class="item" data-category="2">
-                                <a class="anchor"> <span>뮤지컬</span> </a>
+                                <a class="anchor" id="musical" onclick="show(this.id)"> <span>뮤지컬</span> </a>
                             </li>
                             <li class="item" data-category="3">
-                                <a class="anchor"> <span>콘서트</span> </a>
+                                <a class="anchor" id="concert" onclick="show(this.id)"> <span>콘서트</span> </a>
                             </li>
                             <li class="item" data-category="4">
-                                <a class="anchor"> <span>클래식</span> </a>
+                                <a class="anchor" id="classic" onclick="show(this.id)"> <span>클래식</span> </a>
                             </li>
                             <li class="item" data-category="5">
-                                <a class="anchor"> <span>연극</span> </a>
+                                <a class="anchor" id="play" onclick="show(this.id)"> <span>연극</span> </a>
                             </li>
 
                         </ul>
