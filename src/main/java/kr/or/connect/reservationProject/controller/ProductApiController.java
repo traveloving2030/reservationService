@@ -53,8 +53,8 @@ public class ProductApiController {
 		}
 		
 		Map<String, Object> map = new HashMap<>();
-		map.put("productAllList", allProductList);
-		map.put("productAllCount", productAllCount);
+		map.put("productList", allProductList);
+		map.put("productCount", productAllCount);
 		map.put("productPageStartList", productPageStartList);
 		
 		return map;
@@ -78,8 +78,8 @@ public class ProductApiController {
 		}
 		
 		Map<String, Object> map = new HashMap<>();
-		map.put("productListByCategory", productListByCategoryId);
-		map.put("productCountByCategory", productCountByCategoryId);
+		map.put("productList", productListByCategoryId);
+		map.put("productCount", productCountByCategoryId);
 		map.put("productPageStartList", productPageStartList);
 
 		return map;

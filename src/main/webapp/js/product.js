@@ -3,6 +3,8 @@
 
 var productHTML = [];
 var promotionHTML = [];
+var clickCount = 0;
+
 
 function slide(ul, cnt) {
     var index=0;
@@ -52,39 +54,72 @@ function makeTemplate(productList) {
     }
 }
 
-var clickCount = 0;
+
 
 function moreProducts(){
     clickCount ++;
-    $.ajax({
-        dataType: "json",
-        url: "http://localhost:8080/reservationProject/api/products?start="+ clickCount*4,
-        type: "GET",
-        success: function(data){
-            makeTemplate(data.productAllList)
-        }
-    })
+    var active = document.querySelector(".active");
+    var aParentElement = active.parentElement;
+    var category = aParentElement.getAttribute('data-category');
+    if(category >= 1){
+        $.ajax({
+            dataType: "json",
+            url: "http://localhost:8080/reservationProject/api/products/"+category+"?start="+ clickCount*4,
+            type: "GET",
+            success: function(data){
+                makeTemplate(data.productList)
+            }
+        })
+    }else{
+        $.ajax({
+            dataType: "json",
+            url: "http://localhost:8080/reservationProject/api/products?start="+ clickCount*4,
+            type: "GET",
+            success: function(data){
+                makeTemplate(data.productList)
+            }
+        })
+    }
+
+
 
 }
 
 function show(id){
-    var a = document.getElementById(id);
-    var aParentElement = a.parentElement;
-    console.log(aParentElement);
-/*     var ul1 = document.getElementById("firstItem");
+    clickCount=0;
+
+    var ul1 = document.getElementById("firstItem");
     var ul2 = document.getElementById("secondItem");
     ul1.innerHTML="";
     ul2.innerHTML="";
-    $.ajax({
-        dataType: "json",
-        url: "http://localhost:8080/reservationProject/api/products?start="+ clickCount*4,
-        type: "GET",
-        success: function(data){
-            makeTemplate(data.productAllList)
+    
+    var anchor = document.querySelectorAll(".anchor");
+    var aTarget = document.getElementById(id);
+    anchor.forEach(function(aTag){
+        if(aTag == aTarget){
+            aTag.className="anchor active"
+        }else{
+            aTag.className="anchor"
         }
     })
+    
+    var aParentElement = aTarget.parentElement;
+    var category = aParentElement.getAttribute('data-category')
+    
+    if(category==0){
+        sendProductAjax("http://localhost:8080/reservationProject/api/products");
+    }else if(category==1){
+    	sendProductAjax("http://localhost:8080/reservationProject/api/products/1");
+    }else if(category==2){
+    	sendProductAjax("http://localhost:8080/reservationProject/api/products/2");
+    }else if(category==3){
+    	sendProductAjax("http://localhost:8080/reservationProject/api/products/3");
+    }else if(category==4){
+    	sendProductAjax("http://localhost:8080/reservationProject/api/products/4");
+    }else if(category==5){
+    	sendProductAjax("http://localhost:8080/reservationProject/api/products/5");
+    }
 
-    console.log(id); */
 }
 
 
@@ -94,7 +129,7 @@ function sendProductAjax(url) {
     var oReq = new XMLHttpRequest();
     oReq.addEventListener("load", function () {
         var jsonobj = JSON.parse(oReq.responseText);
-        makeTemplate(jsonobj.productAllList);
+        makeTemplate(jsonobj.productList);
     });
     oReq.open("GET", url);
     oReq.send();
@@ -116,6 +151,8 @@ function sendPromotionAjax(url){
 
 
 document.addEventListener("DOMContentLoaded", function () {
+    var aTag = document.getElementById("all");
+    aTag.className="anchor active";
     sendPromotionAjax("http://localhost:8080/reservationProject/api/promotions");
     sendProductAjax("http://localhost:8080/reservationProject/api/products");
 

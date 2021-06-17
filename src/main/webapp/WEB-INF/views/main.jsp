@@ -65,7 +65,7 @@
                     <div class="section_event_tab">
                         <ul class="event_tab_lst tab_lst_min">
                             <li class="item" data-category="0">
-                                <a class="anchor active"> <span>전체리스트</span> </a>
+                                <a class="anchor" id="all" onclick="show(this.id)"> <span>전체리스트</span> </a>
                             </li>
                             <li class="item" data-category="1">
                                 <a class="anchor" id="exhibit" onclick="show(this.id)"> <span>전시</span> </a>
