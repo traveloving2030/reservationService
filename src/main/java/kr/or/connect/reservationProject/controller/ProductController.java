@@ -43,5 +43,36 @@ public class ProductController {
 		return "main";
 	}
 	
+	@GetMapping(path="/bookinglogin")
+	public String bookingLogin() {
+		
+		return "bookinglogin";
+	}
+	
+	@GetMapping(path="/detail")
+	public String detail() {
+		return "detail";
+	}
+	
+	@GetMapping(path="/myreservation")
+	public String myReservation() {
+		return "myreservation";
+	}
+	
+	@GetMapping(path="/reserve")
+	public String reserve() {
+		return "reserve";
+	}
+	
+	@GetMapping(path="/review")
+	public String review() {
+		return "review";
+	}
+	
+	@GetMapping(path="/reviewWrite")
+	public String reviewWrite() {
+		return "reviewWrite";
+	}
+	
 	
 }

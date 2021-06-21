@@ -22,10 +22,10 @@
                         <h1 class="logo">
                             <a href="https://m.naver.com/" class="lnk_logo" title="네이버"> <span
                                     class="spr_bi ico_n_logo">네이버</span> </a>
-                            <a href="./myreservation.html" class="lnk_logo" title="예약"> <span
+                            <a href="myreservation" class="lnk_logo" title="예약"> <span
                                     class="spr_bi ico_bk_logo">예약</span> </a>
                         </h1>
-                        <a href="./bookinglogin.html" class="btn_my"> <span class="viewReservation"
+                        <a href="bookinglogin" class="btn_my"> <span class="viewReservation"
                                 title="예약확인">예약확인</span> </a>
                     </header>
                 </div>
@@ -96,7 +96,7 @@
 
                             <script type="text/template" id="itemList">
 
-                                        <a href="detail.html?id={id}" class="item_book">
+                                        <a href="detail?id={id}" class="item_book">
                                             <div class="item_preview">
                                                 <img class="img_thumb" src="{itemPath}">
                                                 <span class="img_border"></span>
