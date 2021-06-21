@@ -49,7 +49,7 @@ public class ProductController {
 		return "bookinglogin";
 	}
 	
-	@GetMapping(path="/detail")
+	@GetMapping(path="/detail/{productId}")
 	public String detail() {
 		return "detail";
 	}
