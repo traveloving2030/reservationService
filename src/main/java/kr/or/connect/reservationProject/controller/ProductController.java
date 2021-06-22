@@ -8,15 +8,20 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.ui.ModelMap;
 
 import kr.or.connect.reservationProject.dto.Product;
+import kr.or.connect.reservationProject.dto.ProductDetail;
+import kr.or.connect.reservationProject.service.DetailService;
 import kr.or.connect.reservationProject.service.ProductService;
 
 @Controller
 public class ProductController {
 	@Autowired
 	ProductService productService;
+	@Autowired
+	DetailService detailService;
 	
 	@GetMapping(path="/")
 	public String main(@RequestParam(name="start", required=false, defaultValue="0") int start, ModelMap model) {
@@ -49,8 +54,13 @@ public class ProductController {
 		return "bookinglogin";
 	}
 	
-	@GetMapping(path="/detail/{productId}")
-	public String detail() {
+
+	
+	@GetMapping(path="/detail")
+	public String detail(@RequestParam(name="productId") int productId, ModelMap model) {
+		List<ProductDetail> productDetails = detailService.getProductDetail(productId);
+		model.addAttribute("productDetails", productDetails);
+		model.addAttribute("productId", productId);
 		return "detail";
 	}
 	

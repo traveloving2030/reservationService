@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
     <title>네이버 예약</title>
     <link href="css/reservation.css" rel="stylesheet">
+    <link href="css/bookinglogin.css" rel="stylesheet">
     <style>
         .container_visual {
             height: 414px;
@@ -48,38 +49,23 @@
                         <div>
                             <div class="container_visual" style="width: 414px;">
                                 <ul class="visual_img detail_swipe">
-                                    <li class="item" style="width: 414px;"> <img alt="" class="img_thumb" src=""> <span class="img_bg"></span>
-                                        <div class="visual_txt">
-                                            <div class="visual_txt_inn">
-                                                <h2 class="visual_txt_tit"> <span></span> </h2>
-                                                <p class="visual_txt_dsc"></p>
+                                    
+                                    <!-- detail 항목 HTML Templating -->
+                                    <script type="text/template" id="template-detail">
+                                        <li class="item" style="width: 414px;">
+                                            {{#each detailImgPath}}
+                                            <img alt="" class="img_thumb" src="{{this}}"> 
+                                            {{/each}}
+                                            <span class="img_bg"></span>
+                                            <div class="visual_txt">
+                                                <div class="visual_txt_inn">
+                                                    <h2 class="visual_txt_tit"> <span style="color:white; font-size=100px">{{detailTitle}}</span> </h2>
+                                                    <p class="visual_txt_dsc"></p>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </li>
-                                    <li class="item" style="width: 414px;"> <img alt="" class="img_thumb" src=""> <span class="img_bg"></span>
-                                        <div class="visual_txt">
-                                            <div class="visual_txt_inn">
-                                                <h2 class="visual_txt_tit"> <span></span> </h2>
-                                                <p class="visual_txt_dsc"></p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="item" style="width: 414px;"> <img alt="" class="img_thumb" src=""> <span class="img_bg"></span>
-                                        <div class="visual_txt">
-                                            <div class="visual_txt_inn">
-                                                <h2 class="visual_txt_tit"> <span></span> </h2>
-                                                <p class="visual_txt_dsc"></p>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="item" style="width: 414px;"> <img alt="" class="img_thumb" src=""> <span class="img_bg"></span>
-                                        <div class="visual_txt">
-                                            <div class="visual_txt_inn">
-                                                <h2 class="visual_txt_tit"> <span></span> </h2>
-                                                <p class="visual_txt_dsc"></p>
-                                            </div>
-                                        </div>
-                                    </li>
+                                        </li>
+                                    </script>
+  
                                 </ul>
                             </div>
                             <div class="prev">
@@ -108,6 +94,7 @@
                     </div>
                 </div>
                 <div class="section_store_details">
+                    ${detailContent}
                     <!-- [D] 펼쳐보기 클릭 시 store_details에 close3 제거 -->
                     <div class="store_details close3">
                         <p class="dsc">
@@ -262,6 +249,9 @@
     </footer>
     <div id="photoviwer"></div>
 </body>
-
+	<script type="text/javascript" src="js/detail.js?v=<%=System.currentTimeMillis() %>"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"
+        integrity="sha512-RNLkV3d+aLtfcpEyFG8jRbnWHxUqVZozacROI4J2F1sTaDqo1dPQYs01OMi1t1w9Y2FdbSCDSQ2ZVdAC8bzgAg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 </html>

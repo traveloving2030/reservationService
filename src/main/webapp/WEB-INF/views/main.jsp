@@ -96,7 +96,7 @@
 
                             <script type="text/template" id="itemList">
 
-                                        <a href="detail?id={id}" class="item_book">
+                                        <a href="detail?productId={id}" class="item_book" onclick="getProductId()">
                                             <div class="item_preview">
                                                 <img class="img_thumb" src="{itemPath}">
                                                 <span class="img_border"></span>
@@ -140,7 +140,11 @@
 
         </body>
         <script type="text/javascript" src="js/product.js?v=<%=System.currentTimeMillis() %>"></script>
+       <script type="text/javascript" src="js/detail.js?v=<%=System.currentTimeMillis() %>"></script>
         <script src="https://code.jquery.com/jquery-3.4.1.js"
             integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
-
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"
+	        integrity="sha512-RNLkV3d+aLtfcpEyFG8jRbnWHxUqVZozacROI4J2F1sTaDqo1dPQYs01OMi1t1w9Y2FdbSCDSQ2ZVdAC8bzgAg=="
+	        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	 
         </html>
