@@ -1,4 +1,4 @@
-
+var count = 1;
 
 function getProductId(){
 	var url = document.location.href.split("?");
@@ -6,12 +6,19 @@ function getProductId(){
 	return productId;
 }
 
+function nextImage(){
+    //다음 이미지 생성하는것부터!
+    var imageNodes = document.querySelectorAll(".detailImage");
+
+
+}
+
 function makeDetailTemplate(productDetail){
 	var imgs = [];
 	for(var i=0; i<productDetail.length; i++){
 		imgs.push(productDetail[i].save_file_name);
 	}
-	var ul = document.querySelector(".detail_swipe");
+	var div = document.querySelector(".detail_swipe");
 	var template = document.querySelector("#template-detail").innerText;
 	var bindTemplate = Handlebars.compile(template);
 	var data = {
@@ -20,7 +27,7 @@ function makeDetailTemplate(productDetail){
 	};
 	var resultHTML = bindTemplate(data);
 	console.log(data);
-	ul.innerHTML = resultHTML;
+	div.innerHTML = resultHTML;
 	
 }
 
