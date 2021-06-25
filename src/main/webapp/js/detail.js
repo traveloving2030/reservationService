@@ -1,4 +1,5 @@
-var count = 1;
+var count = 0;
+var newArray = [];
 
 function getProductId(){
 	var url = document.location.href.split("?");
@@ -7,13 +8,26 @@ function getProductId(){
 }
 
 function nextImage(){
-    //다음 이미지 생성하는것부터!
-    var imageNodes = document.querySelectorAll(".detailImage");
-
-
+	count++;
+	var ul = document.querySelector(".detail_swipe");
+	if(count == newArray.length){
+		count = 0;
+	}
+	ul.innerHTML = newArray[count];
+	
 }
 
-function makeDetailTemplate(productDetail){
+function prevImage(){
+	count--;
+	var ul = document.querySelector(".detail_swipe");
+	if(count < 0){
+		count = newArray.length - 1;
+	}
+	ul.innerHTML = newArray[count];
+	
+}
+
+/* function makeDetailTemplate(productDetail){
 	var imgs = [];
 	for(var i=0; i<productDetail.length; i++){
 		imgs.push(productDetail[i].save_file_name);
@@ -26,8 +40,33 @@ function makeDetailTemplate(productDetail){
 		    "detailTitle" : productDetail[0].description,
 	};
 	var resultHTML = bindTemplate(data);
-	console.log(data);
+	console.log(resultHTML);
 	div.innerHTML = resultHTML;
+	
+}
+ */
+
+
+
+function makeDetailTemplate(productDetail){
+	var template = document.querySelector("#template-detail").innerText;
+	var bindTemplate = Handlebars.compile(template);
+
+	var data = [];
+	for(var i=0; i<productDetail.length; i++){
+		// 객체생성
+		var details = {};
+		details.detailImgPath = productDetail[i].save_file_name;
+		details.detailTitle = productDetail[i].description;
+		data.push(details);
+	}
+
+	data.forEach(function(v){
+		var resultHTML = bindTemplate(v);
+		newArray.push(resultHTML);
+	})
+	var ul = document.querySelector(".detail_swipe");
+	ul.innerHTML = newArray;
 	
 }
 

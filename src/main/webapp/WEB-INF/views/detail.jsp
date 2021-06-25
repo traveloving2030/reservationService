@@ -60,10 +60,8 @@
 
                                    <!-- detail 항목 HTML Templating -->
                                     <script type="text/template" id="template-detail">
-                                        <li class="item" style="width: 414px;">
-                                            {{#each detailImgPath}}
-                                            <img alt="" class="img_thumb detailImage" src="{{this}}"> 
-                                            {{/each}}
+                                        <li class="item detailImage" style="width: 414px;">
+                                            <img alt="" class="img_thumb" src="{{detailImgPath}}"> 
                                             <span class="img_bg"></span>
                                             <div class="visual_txt">
                                                 <div class="visual_txt_inn">
@@ -71,6 +69,7 @@
                                                     <p class="visual_txt_dsc"></p>
                                                 </div>
                                             </div>
+                                            
                                         </li>
                                    
                                     </script>
@@ -78,7 +77,7 @@
                             </div>
                             <div class="prev">
                                 <div class="prev_inn">
-                                    <a href="#" class="btn_prev" title="이전">
+                                    <a href="#" onclick="prevImage()" class="btn_prev" title="이전">
                                         <!-- [D] 첫 이미지 이면 off 클래스 추가 -->
                                         <i class="spr_book2 ico_arr6_lt off"></i>
                                     </a>
@@ -104,10 +103,11 @@
                             </div>
                         </div>
                         <div class="section_store_details">
-                            ${detailContent}
+                           
                             <!-- [D] 펼쳐보기 클릭 시 store_details에 close3 제거 -->
                             <div class="store_details close3">
                                 <p class="dsc">
+                                    ${productDetails[0].content}
                                 </p>
                             </div>
                             <!-- [D] 토글 상황에 따라 bk_more에 display:none 추가 -->

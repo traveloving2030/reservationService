@@ -17,10 +17,10 @@ public class ProductServiceTest {
 //		ProductService ProductService = ac.getBean(ProductService.class);
 		DetailService DetailService = ac.getBean(DetailService.class);
 
-//		List<ProductDetail> result = DetailService.getProductDetail(2);
-//		System.out.println(result);
-		List<ProductDetail> result = DetailService.getDetailComment(1);
+		List<ProductDetail> result = DetailService.getProductDetail(2);
+		
 		System.out.println(result);
+
 		
 	}
 }
