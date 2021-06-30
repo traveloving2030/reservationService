@@ -1,5 +1,6 @@
 var count = 0;
-var newArray = [];
+var detailArray = [];
+var reviewArray = [];
 
 function getProductId(){
 	var url = document.location.href.split("?");
@@ -10,48 +11,48 @@ function getProductId(){
 function nextImage(){
 	count++;
 	var ul = document.querySelector(".detail_swipe");
-	if(count == newArray.length){
+	if(count == detailArray.length){
 		count = 0;
 	}
-	ul.innerHTML = newArray[count];
+	ul.innerHTML = detailArray[count];
 	
 }
+
+function unfold(){
+	var close = document.querySelector(".close3");
+	var unfold = document.querySelector("._open");
+	var fold = document.querySelector("._close");
+	close.className = "store_details";
+	unfold.style.display = 'none';
+	fold.style.display = 'block';
+}
+
+function fold(){
+	var close = document.querySelector(".store_details");
+	var unfold = document.querySelector("._open");
+	var fold = document.querySelector("._close");
+	close.className = "store_details close3";
+	unfold.style.display = 'block';
+	fold.style.display = 'none';
+}
+
+
 
 function prevImage(){
 	count--;
 	var ul = document.querySelector(".detail_swipe");
 	if(count < 0){
-		count = newArray.length - 1;
+		count = detailArray.length - 1;
 	}
-	ul.innerHTML = newArray[count];
+	ul.innerHTML = detailArray[count];
 	
 }
-
-/* function makeDetailTemplate(productDetail){
-	var imgs = [];
-	for(var i=0; i<productDetail.length; i++){
-		imgs.push(productDetail[i].save_file_name);
-	}
-	var div = document.querySelector(".detail_swipe");
-	var template = document.querySelector("#template-detail").innerText;
-	var bindTemplate = Handlebars.compile(template);
-	var data = {
-		  	"detailImgPath" : imgs,
-		    "detailTitle" : productDetail[0].description,
-	};
-	var resultHTML = bindTemplate(data);
-	console.log(resultHTML);
-	div.innerHTML = resultHTML;
-	
-}
- */
-
 
 
 function makeDetailTemplate(productDetail){
 	var template = document.querySelector("#template-detail").innerText;
 	var bindTemplate = Handlebars.compile(template);
-
+	
 	var data = [];
 	for(var i=0; i<productDetail.length; i++){
 		// 객체생성
@@ -63,18 +64,43 @@ function makeDetailTemplate(productDetail){
 
 	data.forEach(function(v){
 		var resultHTML = bindTemplate(v);
-		newArray.push(resultHTML);
+		detailArray.push(resultHTML);
 	})
 	var ul = document.querySelector(".detail_swipe");
-	ul.innerHTML = newArray;
+	ul.innerHTML = detailArray;
 	
+}
+
+function makeReviewTemplate(comment){
+	var template = document.querySelector("#template-review").innerText;
+	console.log(template);
+	var bindTemplate = Handlebars.compile(template);
+
+	var data = [];
+	for(var i=0; i<comment.length; i++){
+		// 객체생성
+		var review = {};
+		review.reviewImage = comment[i].save_file_name;
+		review.comment = comment[i].comment;
+		review.score = comment[i].score;
+		review.email = comment[i].reservation_email;
+		review.date = comment[i].modify_date;
+		data.push(review);
+	}
+
+	data.forEach(function(v){
+		var resultHTML = bindTemplate(v);
+		reviewArray.push(resultHTML);
+	})
+	var ul = document.querySelector(".list_short_review");
+	ul.innerHTML = reviewArray;
+
 }
 
 function sendDetailAjax(url, productId) {
     var oReq = new XMLHttpRequest();
     oReq.addEventListener("load", function () {
          var jsonobj = JSON.parse(oReq.responseText);
-//         console.log(jsonobj.productDetail[0].content);
          makeDetailTemplate(jsonobj.productDetail);
 
     });
@@ -82,9 +108,20 @@ function sendDetailAjax(url, productId) {
     oReq.send();
 }
 
+function sendReviewAjax(url, productId){
+	var oReq = new XMLHttpRequest();
+    oReq.addEventListener("load", function () {
+         var jsonobj = JSON.parse(oReq.responseText);
+         makeReviewTemplate(jsonobj.comment);
+
+    });
+    oReq.open("GET", url +productId);
+    oReq.send();
+}
+
+
 document.addEventListener("DOMContentLoaded", function () {
-
-
     sendDetailAjax("http://localhost:8080/reservationProject/api/detail/", getProductId());
+	sendReviewAjax("http://localhost:8080/reservationProject/api/detail/comment/", getProductId());
 
 })

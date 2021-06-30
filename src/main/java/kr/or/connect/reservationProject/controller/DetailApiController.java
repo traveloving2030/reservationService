@@ -35,7 +35,7 @@ public class DetailApiController {
 		return map;
 	}
 	
-	@GetMapping("/detail/comment")
+	@GetMapping("/detail/comment/{productId}")
 	public Map<String, Object> detailComment(@PathVariable(name="productId") int productId){
 		List<ProductDetail> comment = detailService.getDetailComment(productId);
 		Map<String, Object> map = new HashMap<>();

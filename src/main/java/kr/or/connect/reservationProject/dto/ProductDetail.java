@@ -8,7 +8,10 @@ public class ProductDetail {
 	private String type;
 	private String score;
 	private String comment;
+	private String modify_date;
+	private String reservation_email;
 	
+
 	public String getId() {
 		return id;
 	}
@@ -51,12 +54,28 @@ public class ProductDetail {
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
+	public String getModify_date() {
+		return modify_date;
+	}
+	public void setModify_date(String modify_date) {
+		this.modify_date = modify_date;
+	}
+	
+	public String getReservation_email() {
+		return reservation_email;
+	}
+	public void setReservation_email(String reservation_email) {
+		this.reservation_email = reservation_email;
+	}
 	
 	@Override
 	public String toString() {
 		return "ProductDetail [id=" + id + ", description=" + description + ", content=" + content + ", save_file_name="
-				+ save_file_name + ", type=" + type + ", score=" + score + ", comment=" + comment + "]";
+				+ save_file_name + ", type=" + type + ", score=" + score + ", comment=" + comment + ", modify_date="
+				+ modify_date + ", reservation_email=" + reservation_email + "]";
 	}
+	
+
 	
 	
 

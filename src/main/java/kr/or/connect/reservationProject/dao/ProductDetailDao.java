@@ -40,6 +40,12 @@ public class ProductDetailDao {
 	 		return jdbc.query(DETAIL_COMMENT, params, rowMapper);
 	 }
 	 
+	
+	public int selectCommentCount(Integer productId) {
+		Map<String, Integer> params = new HashMap<>();
+    	params.put("productId", productId);
+		return jdbc.queryForObject(COMMENT_COUNT, params, Integer.class);
+	}
 	 
 	 
 }

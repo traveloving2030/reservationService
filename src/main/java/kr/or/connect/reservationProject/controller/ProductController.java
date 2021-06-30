@@ -59,8 +59,11 @@ public class ProductController {
 	@GetMapping(path="/detail")
 	public String detail(@RequestParam(name="productId") int productId, ModelMap model) {
 		List<ProductDetail> productDetails = detailService.getProductDetail(productId);
+		int commentCount = detailService.getCommentCount(productId);
 		model.addAttribute("productDetails", productDetails);
 		model.addAttribute("productId", productId);
+		model.addAttribute("commentCount", commentCount);
+	
 		return "detail";
 	}
 	

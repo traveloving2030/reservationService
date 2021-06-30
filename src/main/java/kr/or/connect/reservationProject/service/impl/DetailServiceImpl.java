@@ -29,4 +29,9 @@ public class DetailServiceImpl implements DetailService{
 		return list;
 	}
 	
+	@Override
+	public int getCommentCount(Integer productId) {
+		return productDetailDao.selectCommentCount(productId);
+	}
+	
 }
