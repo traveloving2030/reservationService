@@ -20,6 +20,7 @@ public class Product {
 	private String event;
 	private Date create_date;
 	private Date modify_date;
+	
 	public int getId() {
 		return id;
 	}

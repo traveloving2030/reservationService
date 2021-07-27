@@ -1,21 +1,24 @@
 package kr.or.connect.reservationProject.dto;
 
 public class ProductDetail {
-	private String id;
+	private int id;
 	private String description;
 	private String content;
 	private String save_file_name;
 	private String type;
-	private String score;
+	private double score;
 	private String comment;
 	private String modify_date;
+	private String opening_hours;
+	private String place_name;
 	private String reservation_email;
 	
 
-	public String getId() {
+
+	public int getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public String getDescription() {
@@ -42,10 +45,11 @@ public class ProductDetail {
 	public void setType(String type) {
 		this.type = type;
 	}
-	public String getScore() {
+
+	public double getScore() {
 		return score;
 	}
-	public void setScore(String score) {
+	public void setScore(double score) {
 		this.score = score;
 	}
 	public String getComment() {
@@ -68,13 +72,30 @@ public class ProductDetail {
 		this.reservation_email = reservation_email;
 	}
 	
+	public String getOpening_hours() {
+		return opening_hours;
+	}
+	public void setOpening_hours(String opening_hours) {
+		this.opening_hours = opening_hours;
+	}
+	public String getPlace_name() {
+		return place_name;
+	}
+	public void setPlace_name(String place_name) {
+		this.place_name = place_name;
+	}
+	
 	@Override
 	public String toString() {
 		return "ProductDetail [id=" + id + ", description=" + description + ", content=" + content + ", save_file_name="
 				+ save_file_name + ", type=" + type + ", score=" + score + ", comment=" + comment + ", modify_date="
-				+ modify_date + ", reservation_email=" + reservation_email + "]";
+				+ modify_date + ", opening_hours=" + opening_hours + ", place_name=" + place_name
+				+ ", reservation_email=" + reservation_email + "]";
 	}
+
 	
+
+
 
 	
 	
