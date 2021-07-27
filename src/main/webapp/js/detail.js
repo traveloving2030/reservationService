@@ -1,12 +1,14 @@
 var count = 0;
+var productId;
 var detailArray = [];
 var reviewArray = [];
 
 function getProductId(){
 	var url = document.location.href.split("?");
-	var productId = url[1].substr(10);
+	productId = url[1].substr(10);
 	return productId;
 }
+
 
 function nextImage(){
 	count++;
@@ -48,6 +50,29 @@ function prevImage(){
 	
 }
 
+function showMap(){
+	var aTags = document.querySelectorAll(".anchor");
+	var detailTag = document.querySelector(".detail_area_wrap");
+	var mapTag = document.querySelector(".detail_location");
+	aTags[0].className="anchor";
+	aTags[1].className="anchor active";
+	detailTag.className="detail_area_wrap hide";
+	mapTag.className="detail_location";
+
+
+}
+
+function showDetail(){
+	var aTags = document.querySelectorAll(".anchor");
+	var detailTag = document.querySelector(".detail_area_wrap");
+	var mapTag = document.querySelector(".detail_location");
+	aTags[0].className="anchor active";
+	aTags[1].className="anchor";
+	mapTag.className="detail_location hide";
+	detailTag.className="detail_area_wrap";	
+
+
+}
 
 function makeDetailTemplate(productDetail){
 	var template = document.querySelector("#template-detail").innerText;
@@ -71,13 +96,13 @@ function makeDetailTemplate(productDetail){
 	
 }
 
-function makeReviewTemplate(comment){
+function makeReviewTemplate(comment, len){
 	var template = document.querySelector("#template-review").innerText;
 	console.log(template);
 	var bindTemplate = Handlebars.compile(template);
 
 	var data = [];
-	for(var i=0; i<comment.length; i++){
+	for(var i=0; i<len; i++){
 		// 객체생성
 		var review = {};
 		review.reviewImage = comment[i].save_file_name;
@@ -108,11 +133,22 @@ function sendDetailAjax(url, productId) {
     oReq.send();
 }
 
+function sendSimpleReviewAjax(url, productId){
+	var oReq = new XMLHttpRequest();
+    oReq.addEventListener("load", function () {
+         var jsonobj = JSON.parse(oReq.responseText);
+         makeReviewTemplate(jsonobj.comment, 3);
+
+    });
+    oReq.open("GET", url +productId);
+    oReq.send();
+}
+
 function sendReviewAjax(url, productId){
 	var oReq = new XMLHttpRequest();
     oReq.addEventListener("load", function () {
          var jsonobj = JSON.parse(oReq.responseText);
-         makeReviewTemplate(jsonobj.comment);
+         makeReviewTemplate(jsonobj.comment, jsonobj.comment.length);
 
     });
     oReq.open("GET", url +productId);
@@ -120,8 +156,8 @@ function sendReviewAjax(url, productId){
 }
 
 
+
 document.addEventListener("DOMContentLoaded", function () {
     sendDetailAjax("http://localhost:8080/reservationProject/api/detail/", getProductId());
-	sendReviewAjax("http://localhost:8080/reservationProject/api/detail/comment/", getProductId());
-
+	sendSimpleReviewAjax("http://localhost:8080/reservationProject/api/detail/comment/", getProductId());
 })

@@ -59,11 +59,14 @@ public class ProductController {
 	@GetMapping(path="/detail")
 	public String detail(@RequestParam(name="productId") int productId, ModelMap model) {
 		List<ProductDetail> productDetails = detailService.getProductDetail(productId);
+		List<Product> productDetailsForMap = detailService.getDetailProductForMap(productId);
 		int commentCount = detailService.getCommentCount(productId);
+		int detailImgCount = detailService.getDetailImgCount(productId);
+		model.addAttribute("productDetailsForMap", productDetailsForMap);
 		model.addAttribute("productDetails", productDetails);
 		model.addAttribute("productId", productId);
 		model.addAttribute("commentCount", commentCount);
-	
+		model.addAttribute("detailImgCount", detailImgCount);
 		return "detail";
 	}
 	
@@ -78,7 +81,14 @@ public class ProductController {
 	}
 	
 	@GetMapping(path="/review")
-	public String review() {
+	public String review(@RequestParam(name="productId") int productId, ModelMap model) {
+		List<ProductDetail> productDetails = detailService.getProductDetail(productId);
+		int commentCount = detailService.getCommentCount(productId);
+		int detailImgCount = detailService.getDetailImgCount(productId);
+		model.addAttribute("productDetails", productDetails);
+		model.addAttribute("productId", productId);
+		model.addAttribute("commentCount", commentCount);
+		model.addAttribute("detailImgCount", detailImgCount);
 		return "review";
 	}
 	

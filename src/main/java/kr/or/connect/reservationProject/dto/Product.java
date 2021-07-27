@@ -5,16 +5,21 @@ import java.util.*;
 public class Product {
 	private int id;
 	private int category_id;
-	private String description;
+	private String description;	
 	private String content;
+	private String opening_hours;
 	private String place_name;
+	private String place_lot;
+	private String place_street;
+	private String tel;
+	private String homepage;
+	private String email;
 	private String save_file_name;
 	private String type;
 	
 	private String event;
 	private Date create_date;
 	private Date modify_date;
-	
 	public int getId() {
 		return id;
 	}
@@ -39,11 +44,47 @@ public class Product {
 	public void setContent(String content) {
 		this.content = content;
 	}
+	public String getOpening_hours() {
+		return opening_hours;
+	}
+	public void setOpening_hours(String opening_hours) {
+		this.opening_hours = opening_hours;
+	}
 	public String getPlace_name() {
 		return place_name;
 	}
 	public void setPlace_name(String place_name) {
 		this.place_name = place_name;
+	}
+	public String getPlace_lot() {
+		return place_lot;
+	}
+	public void setPlace_lot(String place_lot) {
+		this.place_lot = place_lot;
+	}
+	public String getPlace_street() {
+		return place_street;
+	}
+	public void setPlace_street(String place_street) {
+		this.place_street = place_street;
+	}
+	public String getTel() {
+		return tel;
+	}
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
+	public String getHomepage() {
+		return homepage;
+	}
+	public void setHomepage(String homepage) {
+		this.homepage = homepage;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	public String getSave_file_name() {
 		return save_file_name;
@@ -76,13 +117,16 @@ public class Product {
 		this.modify_date = modify_date;
 	}
 	
-	
 	@Override
 	public String toString() {
 		return "Product [id=" + id + ", category_id=" + category_id + ", description=" + description + ", content="
-				+ content + ", place_name=" + place_name + ", save_file_name=" + save_file_name + ", type=" + type
-				+ ", event=" + event + ", create_date=" + create_date + ", modify_date=" + modify_date + "]";
+				+ content + ", opening_hours=" + opening_hours + ", place_name=" + place_name + ", place_lot="
+				+ place_lot + ", place_street=" + place_street + ", tel=" + tel + ", homepage=" + homepage + ", email="
+				+ email + ", save_file_name=" + save_file_name + ", type=" + type + ", event=" + event
+				+ ", create_date=" + create_date + ", modify_date=" + modify_date + "]";
 	}
+	
+	
 	
 	
 	
