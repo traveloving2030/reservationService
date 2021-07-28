@@ -18,7 +18,6 @@ import org.springframework.stereotype.Repository;
 import kr.or.connect.reservationProject.dto.ProductDetail;
 import kr.or.connect.reservationProject.dto.Reservation;
 
-import static kr.or.connect.guestbook.dao.GuestbookDaoSqls.DELETE_BY_ID;
 import static kr.or.connect.reservationProject.dao.ReservationProjectDaoSqls.*;
 
 @Repository
@@ -55,9 +54,11 @@ public class ReservationDao {
 	 		return jdbc.query(RESERVATION_INFO, params, rowMapper2);
 	 }
 	 
-	 public int deleteById(Integer id) {
-			Map<String, ?> params = Collections.singletonMap("id", id);
-			return jdbc.update(DELETE_BY_ID, params);
+	 public void cancelReservation(Reservation reservation) {
+		 	Map<String, Object> params = new HashMap<String,Object>();
+		 	params.put("productId", reservation.getProduct_id());
+		 	params.put("email", reservation.getReservation_email());
+			jdbc.update(CANCEL_RESERVATION, params);
 	 }
 	 
 	 

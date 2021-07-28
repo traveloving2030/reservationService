@@ -7,22 +7,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
-
+import kr.or.connect.reservationProject.dao.LogDao;
 import kr.or.connect.reservationProject.dao.ProductDetailDao;
 import kr.or.connect.reservationProject.dao.ReservationDao;
 import kr.or.connect.reservationProject.dto.Log;
 import kr.or.connect.reservationProject.dto.ProductDetail;
 import kr.or.connect.reservationProject.dto.Reservation;
-import kr.or.connect.reservationProject.service.ReservationServcie;
+import kr.or.connect.reservationProject.service.ReservationService;
 
 @Service
-public class ReservationServiceImpl implements ReservationServcie {
+public class ReservationServiceImpl implements ReservationService {
 	@Autowired
 	ProductDetailDao productDetailDao;
 
 	@Autowired
 	ReservationDao reservationDao;
+	
+	@Autowired
+	LogDao logDao;
 	
 	@Override
 	@Transactional
@@ -44,11 +46,20 @@ public class ReservationServiceImpl implements ReservationServcie {
 	}
 	
 	@Override
+	@Transactional
+	public List<Reservation> getProductPrice(Integer productId){
+		List<Reservation> list = reservationDao.selectProductPrice(productId);
+		return list;
+	}
+	
+	
+	@Override
 	@Transactional(readOnly=false)
 	public Reservation addReservation(Reservation reservation, Integer productId, Integer display_info_id, String ip) {
-		guestbook.setRegdate(new Date());
+		reservation.setProduct_id(productId);
+		reservation.setDisplay_info_id(display_info_id);
 		int id = reservationDao.insert(reservation);
-		guestbook.setId(id);
+		reservation.setId(id);
 		
 //		if(1 == 1)
 //			throw new RuntimeException("test exception");
@@ -60,7 +71,15 @@ public class ReservationServiceImpl implements ReservationServcie {
 		logDao.insert(log);
 		
 		
-		return guestbook;
+		return reservation;
 	}
 	
+	@Override
+	@Transactional(readOnly=false)
+	public List<Reservation> cancelReservation(Reservation reservation, Integer productId, String email){
+		reservation.setProduct_id(productId);
+		reservation.setReservation_email(email);
+		reservationDao.cancelReservation(reservation);
+		return getReservationInfo(email);
+	}
 }
