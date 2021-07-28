@@ -30,6 +30,9 @@ public class ReservationDao {
 	 
 	 public ReservationDao(DataSource dataSource) {
 		 this.jdbc = new NamedParameterJdbcTemplate(dataSource);
+		 this.insertAction = new SimpleJdbcInsert(dataSource)
+				 .withTableName("reservation_info")
+				 .usingGeneratedKeyColumns("id");
 	 }
 	 
 	 public List<ProductDetail> selectDetailProduct(Integer productId){
@@ -38,9 +41,9 @@ public class ReservationDao {
 	 		return jdbc.query(DETAIL_PRODUCT, params, rowMapper);
 	 }
 	 
-	 public int insert(Reservation reservation) {
+	 public Long insert(Reservation reservation) {
 			SqlParameterSource params = new BeanPropertySqlParameterSource(reservation);
-			return insertAction.executeAndReturnKey(params).intValue();
+			return insertAction.executeAndReturnKey(params).longValue();
 	 }
 	 
 	 public List<Reservation> selectProductPrice(Integer productId){

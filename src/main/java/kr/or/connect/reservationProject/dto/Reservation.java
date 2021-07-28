@@ -3,7 +3,7 @@ package kr.or.connect.reservationProject.dto;
 import java.util.Date;
 
 public class Reservation {
-	private int id;
+	private Long id;
 	private int product_id;
 	private int display_info_id;
 	private String price_type_name;
@@ -22,10 +22,11 @@ public class Reservation {
 	private Date create_date;
 	private Date modify_date;
 	
-	public int getId() {
+
+	public Long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getPrice_type_name() {
