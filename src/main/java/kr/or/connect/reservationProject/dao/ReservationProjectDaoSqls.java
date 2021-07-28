@@ -15,7 +15,7 @@ public class ReservationProjectDaoSqls {
 	public static final String COMMENT_COUNT = "SELECT count(*) FROM Product prod JOIN reservation_user_comment com ON (prod.id = com.product_id) JOIN reservation_info resv ON (com.reservation_info_id = resv.id AND prod.id = resv.product_id AND resv.product_id = com.product_id) LEFT OUTER JOIN reservation_user_comment_image comImg ON (comImg.reservation_user_comment_id = com.id AND comImg.reservation_info_id = resv.id) LEFT OUTER JOIN file_info fi ON(comImg.file_id = fi.id) WHERE prod.id = :productId";
 	
 	public static final String PRODUCT_PRICE = "SELECT prod.id, fare.price_type_name, fare.price, fare.discount_rate FROM product prod JOIN product_price fare ON (fare.product_id = prod.id) WHERE prod.id = :productId";
-	public static final String RESERVATION_COUNT = "SELECT (*) FROM reservation_info";
+	public static final String RESERVATION_COUNT = "SELECT count(*) FROM reservation_info";
 	public static final String RESERVATION_INFO = "SELECT prod.id, prod.description, di.opening_hours, di.place_name, di.tel, di.homepage, ri.reservation_email FROM product prod JOIN reservation_info ri ON (ri.product_id = prod.id) JOIN display_info di ON (di.product_id = ri.display_info_id) WHERE ri.reservation_email = :email";
 	public static final String CANCEL_RESERVATION = "UPDATE reservation_info SET cancel_flag = 1 WHERE reservation_email = :email AND product_id := productId";
 }

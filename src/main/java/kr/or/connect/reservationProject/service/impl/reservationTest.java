@@ -17,8 +17,9 @@ public class reservationTest {
 //		ProductService ProductService = ac.getBean(ProductService.class);
 		ReservationService ReservationService = ac.getBean(ReservationService.class);
 		
-		List<ProductDetail> result = ReservationService.getProductDetail(1);
+
 		
+		int result = ReservationService.getTotalReservation();
 		System.out.println(result);
 	}
 

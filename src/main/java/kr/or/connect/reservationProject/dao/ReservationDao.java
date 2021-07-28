@@ -18,6 +18,7 @@ import org.springframework.stereotype.Repository;
 import kr.or.connect.reservationProject.dto.ProductDetail;
 import kr.or.connect.reservationProject.dto.Reservation;
 
+
 import static kr.or.connect.reservationProject.dao.ReservationProjectDaoSqls.*;
 
 @Repository
@@ -26,6 +27,10 @@ public class ReservationDao {
 	 private SimpleJdbcInsert insertAction;
 	 private RowMapper<ProductDetail> rowMapper = BeanPropertyRowMapper.newInstance(ProductDetail.class);
 	 private RowMapper<Reservation> rowMapper2 = BeanPropertyRowMapper.newInstance(Reservation.class);
+	 
+	 public ReservationDao(DataSource dataSource) {
+		 this.jdbc = new NamedParameterJdbcTemplate(dataSource);
+	 }
 	 
 	 public List<ProductDetail> selectDetailProduct(Integer productId){
 	 		Map<String, Integer> params = new HashMap<>();
@@ -48,6 +53,8 @@ public class ReservationDao {
 		 return jdbc.queryForObject(RESERVATION_COUNT, Collections.emptyMap(), Integer.class);
 	 }
 	 
+
+	 
 	 public List<Reservation> selectReservationInfo(String email){
 	 		Map<String, String> params = new HashMap<>();
 	 		params.put("email", email);
@@ -61,7 +68,7 @@ public class ReservationDao {
 			jdbc.update(CANCEL_RESERVATION, params);
 	 }
 	 
-	 
+
 	 
 	 
 	 
