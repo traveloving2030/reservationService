@@ -25,6 +25,7 @@ import static kr.or.connect.reservationProject.dao.ReservationProjectDaoSqls.*;
 public class ReservationDao {
 	 private NamedParameterJdbcTemplate jdbc;
 	 private SimpleJdbcInsert insertAction;
+	 private SimpleJdbcInsert insertAction2;
 	 private RowMapper<ProductDetail> rowMapper = BeanPropertyRowMapper.newInstance(ProductDetail.class);
 	 private RowMapper<Reservation> rowMapper2 = BeanPropertyRowMapper.newInstance(Reservation.class);
 	 
@@ -32,6 +33,9 @@ public class ReservationDao {
 		 this.jdbc = new NamedParameterJdbcTemplate(dataSource);
 		 this.insertAction = new SimpleJdbcInsert(dataSource)
 				 .withTableName("reservation_info")
+				 .usingGeneratedKeyColumns("id");
+		 this.insertAction2 = new SimpleJdbcInsert(dataSource)
+				 .withTableName("reservation_info_price")
 				 .usingGeneratedKeyColumns("id");
 	 }
 	 
@@ -41,9 +45,14 @@ public class ReservationDao {
 	 		return jdbc.query(DETAIL_PRODUCT, params, rowMapper);
 	 }
 	 
-	 public Long insert(Reservation reservation) {
+	 public Long addNewPerson(Reservation reservation) {
 			SqlParameterSource params = new BeanPropertySqlParameterSource(reservation);
 			return insertAction.executeAndReturnKey(params).longValue();
+	 }
+	 
+	 public Long addReservation(Reservation reservation) {
+		 	SqlParameterSource params = new BeanPropertySqlParameterSource(reservation);
+		 	return insertAction2.executeAndReturnKey(params).longValue();
 	 }
 	 
 	 public List<Reservation> selectProductPrice(Integer productId){
@@ -52,11 +61,20 @@ public class ReservationDao {
 	 		return jdbc.query(PRODUCT_PRICE, params, rowMapper2);
 	 }
 	 
+	 public List<Reservation> selectReservationGroupbyPrice(Integer productId, String email){
+		 	Map<String, Object> params = new HashMap<String,Object>();
+	 		params.put("productId", productId);
+	 		params.put("email", email);
+	 		return jdbc.query(RSERVATION_GROUPBY_PRICE, params, rowMapper2);
+	 }
+	 
+	 
+	 
 	 public int selectReservationCount() {
 		 return jdbc.queryForObject(RESERVATION_COUNT, Collections.emptyMap(), Integer.class);
 	 }
 	 
-
+	 
 	 
 	 public List<Reservation> selectReservationInfo(String email){
 	 		Map<String, String> params = new HashMap<>();

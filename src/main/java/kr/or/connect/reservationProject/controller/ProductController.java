@@ -70,15 +70,7 @@ public class ProductController {
 		return "detail";
 	}
 	
-	@GetMapping(path="/myreservation")
-	public String myReservation() {
-		return "myreservation";
-	}
-	
-	@GetMapping(path="/reserve")
-	public String reserve() {
-		return "reserve";
-	}
+
 	
 	@GetMapping(path="/review")
 	public String review(@RequestParam(name="productId") int productId, ModelMap model) {

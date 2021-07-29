@@ -54,10 +54,17 @@ public class ReservationServiceImpl implements ReservationService {
 	
 	
 	@Override
+	@Transactional
+	public List<Reservation> getReservationGroupbyPrice(Integer productId, String email){
+		List<Reservation> list = reservationDao.selectReservationGroupbyPrice(productId, email);
+		return list;
+	}
+	
+	@Override
 	@Transactional(readOnly=false)
-	public Reservation addReservation(Reservation reservation, String ip) {
+	public Reservation addNewPerson(Reservation reservation, String ip) {
 
-		Long id = reservationDao.insert(reservation);
+		Long id = reservationDao.addNewPerson(reservation);
 		reservation.setId(id);
 		
 //		if(1 == 1)
@@ -75,8 +82,19 @@ public class ReservationServiceImpl implements ReservationService {
 	
 	@Override
 	@Transactional(readOnly=false)
+	public Reservation addReservation(Reservation reservation) {
+		Long id = reservationDao.addReservation(reservation);
+		reservation.setId(id);
+		
+		return reservation;
+	}
+	
+	@Override
+	@Transactional(readOnly=false)
 	public List<Reservation> cancelReservation(Reservation reservation){
 		reservationDao.cancelReservation(reservation);
 		return getReservationInfo(reservation.getReservation_email());
 	}
+	
+	
 }

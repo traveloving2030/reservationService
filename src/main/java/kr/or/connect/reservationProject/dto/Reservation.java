@@ -4,6 +4,9 @@ import java.util.Date;
 
 public class Reservation {
 	private Long id;
+	private int count;
+	private int reservation_info_id;
+	private int product_price_id;
 	private int product_id;
 	private int display_info_id;
 	private String price_type_name;
@@ -28,6 +31,25 @@ public class Reservation {
 	}
 	public void setId(Long id) {
 		this.id = id;
+	}
+	public int getCount() {
+		return count;
+	}
+	
+	public int getReservation_info_id() {
+		return reservation_info_id;
+	}
+	public void setReservation_info_id(int reservation_info_id) {
+		this.reservation_info_id = reservation_info_id;
+	}
+	public int getProduct_price_id() {
+		return product_price_id;
+	}
+	public void setProduct_price_id(int product_price_id) {
+		this.product_price_id = product_price_id;
+	}
+	public void setCount(int count) {
+		this.count = count;
 	}
 	public String getPrice_type_name() {
 		return price_type_name;
