@@ -38,12 +38,14 @@ public class ReservationController {
 		return "reserve";
 	}
 	
-	@PostMapping(path="/addPerson")
-	public String addPerson(@ModelAttribute Reservation reservation,
+	@PostMapping(path="/addReservation")
+	public String addReservation(@ModelAttribute Reservation reservation,
+							@ModelAttribute Reservation reservation2,
 							HttpServletRequest request) {
 		String clientIp = request.getRemoteAddr();
 		System.out.println("clientIp : " + clientIp);
 		reservationService.addNewPerson(reservation, clientIp);
+		reservationService.addReservation(reservation2);
 		return "redirect:/reserve";
 	}
 	
@@ -53,11 +55,21 @@ public class ReservationController {
 			HttpSession session,
 			RedirectAttributes redirectAttr
 			) {
+			List<Reservation> reservationInfo = reservationService.getReservationInfo(email);
+			reservationInfo.forEach(obj -> {
+				if(obj.getReservation_email().equals(email)) {
+					session.setAttribute("isValidUser", "true");
+				}else {
+					redirectAttr.addFlashAttribute("errorMessage","등록되지 않은 이메일입니다.");
+				}
+			});
 			
-		return "myreservation";
+			return "myreservation";
 	}
 	
-	@GetMapping(path="/")
+	
+	
+	
 	
 	
 }

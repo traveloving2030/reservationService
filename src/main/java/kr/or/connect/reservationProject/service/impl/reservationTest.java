@@ -29,7 +29,11 @@ public class reservationTest {
 		
 //		int result = ReservationService.getTotalReservation();
 //		List<Reservation> result = ReservationService.getProductPrice(1);
-		System.out.println(result);
+		result.forEach(i -> {
+			if(1==1) {
+				System.out.println(i.getReservation_email());
+			}
+		});
 	}
 
 }
