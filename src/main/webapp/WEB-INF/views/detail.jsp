@@ -129,7 +129,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="section_btn"> <button type="button" class="bk_btn"> <i
+                        <div class="section_btn"> <button type="button" class="bk_btn" onclick="window.location.href='reserve?productId=${productId}'"> <i
                                     class="fn fn-nbooking-calender2"></i> <span>예매하기</span> </button> </div>
                         <div class="section_review_list">
                             <div class="review_box">

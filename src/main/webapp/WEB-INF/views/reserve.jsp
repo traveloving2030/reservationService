@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
     <title>네이버 예약</title>
     <link href="css/reservation.css" rel="stylesheet">
+    <link href="css/bookinglogin.css" rel="stylesheet">
 </head>
 
 <body>
@@ -110,7 +111,9 @@
                         <div class="form_wrap">
                             <h3 class="out_tit">예매자 정보</h3>
                             <div class="agreement_nessasary help_txt"> <span class="spr_book ico_nessasary"></span> <span>필수입력</span> </div>
-                            <form class="form_horizontal">
+                            
+                                <!-- form action, method 태그 추가함 -->
+                            <form class="form_horizontal" action="/addReservation" method="POST">
                                 <div class="inline_form"> <label class="label" for="name"> <span class="spr_book ico_nessasary">필수</span> <span>예매자</span> </label>
                                     <div class="inline_control"> <input type="text" name="name" id="name" class="text" placeholder="네이버" maxlength="17"> </div>
                                 </div>
@@ -129,6 +132,7 @@
                                     </div>
                                 </div>
                             </form>
+
                         </div>
                     </div>
                     <div class="section_booking_agreement">
@@ -154,7 +158,7 @@
                 </div>
                 <div class="box_bk_btn">
                     <!-- [D] 약관 전체 동의가 되면 disable 제거 -->
-                    <div class="bk_btn_wrap disable"> <button type="button" class="bk_btn"> <i class="spr_book ico_naver_s"></i>  <span>예약하기</span> </button> </div>
+                    <div class="bk_btn_wrap disable"> <button type="button" class="bk_btn" onclick="window.location.href='myreservation?=${productId}'"> <i class="spr_book ico_naver_s"></i>  <span>예약하기</span> </button> </div>
                 </div>
             </div>
         </div>

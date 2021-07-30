@@ -1,5 +1,6 @@
 package kr.or.connect.reservationProject.service.impl;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -25,15 +26,18 @@ public class reservationTest {
 //
 //		List<Reservation> result = ReservationService.cancelReservation(reservation);
 		
-		List<Reservation> result = ReservationService.getReservationInfo("traveloving2030@gmail.com");
+
 		
 //		int result = ReservationService.getTotalReservation();
-//		List<Reservation> result = ReservationService.getProductPrice(1);
-		result.forEach(i -> {
-			if(1==1) {
-				System.out.println(i.getReservation_email());
-			}
-		});
+//		List<Reservation> result = ReservationService.getReservationInfo("kimjinsu@connect.co.kr");
+//		System.out.println(result);
+		
+		Date date = new Date();
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");   
+		String format = formatter.format(date);
+		System.out.println(format);
 	}
 
 }
+
+

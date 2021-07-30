@@ -1,11 +1,14 @@
 package kr.or.connect.reservationProject.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -18,6 +21,7 @@ import kr.or.connect.reservationProject.dto.Reservation;
 import kr.or.connect.reservationProject.service.DetailService;
 import kr.or.connect.reservationProject.service.ReservationService;
 
+@Controller
 public class ReservationController {
 	
 	// controller에서 Reservation DTO 에 대해 SetId, Set ... 다 해주기!ddd
@@ -32,9 +36,18 @@ public class ReservationController {
 	public String reserve(@RequestParam(name="productId") int productId, ModelMap model) {
 		List<ProductDetail> productDetails = detailService.getProductDetail(productId);
 		List<Reservation> productPrice = reservationService.getProductPrice(productId);
+		Reservation reservation = new Reservation();
+		
+		Date date = new Date();
+		reservation.setReservation_date(date);
+		Date resvDate = reservation.getReservation_date();
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");   
+		String Date = formatter.format(resvDate);
+		
 		model.addAttribute("productDetails", productDetails);
 		model.addAttribute("productId", productId);
 		model.addAttribute("productPrice", productPrice);
+		model.addAttribute("resrvDate", Date);
 		return "reserve";
 	}
 	
@@ -44,9 +57,18 @@ public class ReservationController {
 							HttpServletRequest request) {
 		String clientIp = request.getRemoteAddr();
 		System.out.println("clientIp : " + clientIp);
-		reservationService.addNewPerson(reservation, clientIp);
-		reservationService.addReservation(reservation2);
+		reservationService.addReservationInfo(reservation, clientIp);
+		reservationService.addReservationInfoPrice(reservation2);
 		return "redirect:/reserve";
+	}
+	
+	@GetMapping(path="/myreservation")
+	public String myreservation(@RequestParam(name="email") String email, ModelMap model) {
+		List<Reservation> reservationInfo = reservationService.getReservationInfo(email);
+		List<Reservation> reservationGroupbyPriceType = reservationService.getReservationGroupbyPriceType(email);
+		model.addAttribute("reservationInfo", reservationInfo);
+		model.addAttribute("reservationGroupbyPriceType", reservationGroupbyPriceType);
+		return "myreservation";
 	}
 	
 	@PostMapping(path="/myreservation")

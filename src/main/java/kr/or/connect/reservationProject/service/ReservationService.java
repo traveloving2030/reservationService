@@ -10,9 +10,9 @@ public interface ReservationService {
 	public List<ProductDetail> getProductDetail(Integer productId);
 	public int getTotalReservation();
 	public List<Reservation> getReservationInfo(String email);
-	public Reservation addNewPerson(Reservation reservation, String ip);
-	public Reservation addReservation(Reservation reservation);
+	public Reservation addReservationInfo(Reservation reservation, String ip);
+	public Reservation addReservationInfoPrice(Reservation reservation);
 	public List<Reservation> getProductPrice(Integer productId);
 	public List<Reservation> cancelReservation(Reservation reservation);
-	public List<Reservation> getReservationGroupbyPrice(Integer productId, String email);
+	public List<Reservation> getReservationGroupbyPriceType(String email);
 }

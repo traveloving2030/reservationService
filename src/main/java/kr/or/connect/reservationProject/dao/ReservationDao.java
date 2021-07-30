@@ -45,12 +45,12 @@ public class ReservationDao {
 	 		return jdbc.query(DETAIL_PRODUCT, params, rowMapper);
 	 }
 	 
-	 public Long addNewPerson(Reservation reservation) {
+	 public Long addReservationInfo(Reservation reservation) {
 			SqlParameterSource params = new BeanPropertySqlParameterSource(reservation);
 			return insertAction.executeAndReturnKey(params).longValue();
 	 }
 	 
-	 public Long addReservation(Reservation reservation) {
+	 public Long addReservationInfoPrice(Reservation reservation) {
 		 	SqlParameterSource params = new BeanPropertySqlParameterSource(reservation);
 		 	return insertAction2.executeAndReturnKey(params).longValue();
 	 }
@@ -61,11 +61,10 @@ public class ReservationDao {
 	 		return jdbc.query(PRODUCT_PRICE, params, rowMapper2);
 	 }
 	 
-	 public List<Reservation> selectReservationGroupbyPrice(Integer productId, String email){
-		 	Map<String, Object> params = new HashMap<String,Object>();
-	 		params.put("productId", productId);
+	 public List<Reservation> selectReservationGroupbyPrice(String email){
+		 	Map<String, String> params = new HashMap<String,String>();
 	 		params.put("email", email);
-	 		return jdbc.query(RSERVATION_GROUPBY_PRICE, params, rowMapper2);
+	 		return jdbc.query(RSERVATION_GROUPBY_PRICE_TYPE, params, rowMapper2);
 	 }
 	 
 	 
